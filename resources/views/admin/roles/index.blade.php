@@ -32,7 +32,7 @@
                                                 <td>
                                                     <div class="flex justify-end">
                                                         <div class="flex space-x-2">
-                                                            <a href="#" {{--  href="{{ route('admin.users.show', $user->id) }}" --}}
+                                                            <a href="{{ route('admin.roles.edit', $role->id) }}"
                                                                 class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Edit</a>
                                                             <form
                                                                 class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
