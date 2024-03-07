@@ -65,6 +65,6 @@ class PermissionController extends Controller
             return back()->with('message', "Role $role->name removed.");
         }
 
-        return back()->with("message", "Role not exist.");
+        return back()->with("message", "Role does not exist.");
     }
 }
