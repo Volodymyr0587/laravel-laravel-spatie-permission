@@ -37,7 +37,7 @@
                                                             <form
                                                                 class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
                                                                 method="POST"
-                                                                {{-- action="{{ route('admin.users.destroy', $user->id) }}" --}}
+                                                                action="{{ route('admin.permissions.destroy', $permission->id) }}"
                                                                 onsubmit="return confirm('Are you sure?');">
                                                                 @csrf
                                                                 @method('DELETE')
