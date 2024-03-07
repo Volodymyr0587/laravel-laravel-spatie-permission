@@ -24,7 +24,7 @@ class RoleController extends Controller
         $validated = $request->validate(['name' => ['required', 'min:3']]);
         Role::create($validated);
 
-        return to_route('admin.roles.index')->with('success', 'Role created');
+        return to_route('admin.roles.index')->with('message', 'Role created successfully');
     }
 
     public function edit(Role $role)
@@ -37,6 +37,6 @@ class RoleController extends Controller
         $validated = $request->validate(['name'=> ['required','min:3']]);
         $role->update($validated);
 
-        return to_route('admin.roles.index')->with('success', 'Role updated');
+        return to_route('admin.roles.index')->with('message', 'Role updated successfully');
     }
 }
