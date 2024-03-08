@@ -39,23 +39,24 @@
                     <section class="mb-32 text-center md:text-left">
                         <h2 class="mb-12 text-center text-3xl font-bold">Latest articles</h2>
 
-                        <!-- Post -->
+                        <!-- Posts -->
+                        @forelse ($posts as $post)
                         <div class="mb-12 grid items-center gap-x-6 md:grid-cols-2 xl:gap-x-12">
                             <div class="mb-6 md:mb-0">
                                 <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                                     data-te-ripple-init data-te-ripple-color="light">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full"
+                                    <img src="{{ $post->image }}" class="w-full"
                                         alt="Louvre" />
-                                    <a href="#!">
+                                    {{-- <a href="#!">
                                         <div
                                             class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
                                         </div>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
 
                             <div>
-                                <h3 class="mb-3 text-2xl font-bold">Welcome to California</h3>
+                                <h3 class="mb-3 text-2xl font-bold">{{ $post->title }}</h3>
                                 <div
                                     class="mb-3 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -66,24 +67,26 @@
                                     Travels
                                 </div>
                                 <p class="mb-6 text-neutral-500">
-                                    <small>Published <u>13.01.2022</u> by
+                                    <small>Published <u>{{ $post->updated_at->diffForHumans() }}</u> by
                                         <a href="#!">Anna Maria Doe</a></small>
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    Ut pretium ultricies dignissim. Sed sit amet mi eget urna placerat
-                                    vulputate. Ut vulputate est non quam dignissim elementum. Donec a
-                                    ullamcorper diam.
+                                    {{ $post->body }}
                                 </p>
                             </div>
                         </div>
                         <!--  Post -->
+                        @empty
+                        <p class="mb-12 text-center text-3xl font-bold">No Posts</p>
+                        @endforelse
+
 
 
                     </section>
                     <!-- Section: Design Block -->
+                    {{ $posts->links() }}
                 </div>
                 <!-- Container for demo purpose -->
-
             </div>
         </div>
     </body>
