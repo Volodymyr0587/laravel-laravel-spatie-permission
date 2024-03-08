@@ -68,7 +68,7 @@
                                 </div>
                                 <p class="mb-6 text-neutral-500">
                                     <small>Published <u>{{ $post->updated_at->diffForHumans() }}</u> by
-                                        <a href="#!">Anna Maria Doe</a></small>
+                                        <a href="#!">{{ $post->user->name }}</a></small>
                                 </p>
                                 <p class="text-neutral-500 ">
                                     {{ $post->body }}
