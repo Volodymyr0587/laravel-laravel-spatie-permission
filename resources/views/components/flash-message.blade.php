@@ -1,5 +1,6 @@
 @if (session()->has('message'))
-<div x-data="{open: true}" x-show="open" x-init="setTimeout(() => open = false, 5000)"
+<div x-data="{open: true}" x-show="open" x-init="setTimeout(() => open = false, 4000)"
+x-transition:leave.duration.2000ms
     class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
     <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true">
