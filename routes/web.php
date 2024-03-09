@@ -48,4 +48,8 @@ Route::middleware(['auth', 'role:admin', 'verified'])->name('admin.')->prefix('a
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
 
+Route::middleware(['auth', 'role:admin|writer', 'verified'])->name('admin-writer.')->prefix('admin-writer')->group(function () {
+    Route::get('/', [PostController::class, 'postsList'])->name('postsList');
+});
+
 require __DIR__.'/auth.php';

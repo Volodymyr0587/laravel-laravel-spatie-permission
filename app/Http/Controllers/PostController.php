@@ -12,4 +12,16 @@ class PostController extends Controller
         $posts = Post::orderBy("created_at","desc")->paginate(3);
         return view("home", compact("posts"));
     }
+
+    public function postsList()
+    {
+        $posts = Post::orderBy("created_at","desc")->paginate(6);
+
+        return view("posts.list", compact("posts"));
+    }
+
+    public function create()
+    {
+        return view("posts.create");
+    }
 }
