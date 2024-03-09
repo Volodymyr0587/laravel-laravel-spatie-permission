@@ -9,13 +9,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("created_at","desc")->with('users')->paginate(3);
+        $posts = Post::orderBy("created_at","desc")->with('user')->paginate(3);
         return view("home", compact("posts"));
     }
 
     public function postsList()
     {
-        $posts = Post::orderBy("created_at","desc")->paginate(6);
+        $posts = Post::orderBy("created_at","desc")->with('user')->paginate(6);
 
         return view("posts.list", compact("posts"));
     }
