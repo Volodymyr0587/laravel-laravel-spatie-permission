@@ -50,8 +50,11 @@ Route::middleware(['auth', 'role:admin', 'verified'])->name('admin.')->prefix('a
 
 Route::middleware(['auth', 'role:admin|writer', 'verified'])->name('admin-writer.')->prefix('admin-writer')->group(function () {
     Route::get('/', [PostController::class, 'postsList'])->name('postsList');
-    Route::get('/postCreate', [PostController::class, 'create'])->name('postCreate');
-    Route::post('/posts', [PostController::class, 'store'])->name('postStore');
+    Route::get('/posts', [PostController::class, 'create'])->name('postCreate');
+    Route::post('/posts/store', [PostController::class, 'store'])->name('postStore');
+    Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('postEdit');
+    Route::post('/posts/{post}', [PostController::class,'update'])->name('postUpdate');
+    Route::post('/posts', [PostController::class, 'active'])->name('postActive');
 });
 
 require __DIR__.'/auth.php';
