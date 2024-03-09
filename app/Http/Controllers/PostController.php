@@ -9,13 +9,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("created_at","desc")->with('user')->paginate(3);
+        $posts = Post::orderBy("created_at", "desc")->with('user')->paginate(3);
         return view("home", compact("posts"));
     }
 
     public function postsList()
     {
-        $posts = Post::orderBy("created_at","desc")->with('user')->paginate(6);
+        $posts = Post::orderBy("created_at", "desc")->with('user')->paginate(6);
 
         return view("posts.list", compact("posts"));
     }
@@ -23,5 +23,18 @@ class PostController extends Controller
     public function create()
     {
         return view("posts.create");
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+
+        auth()->user()->posts()->create($request->all());
+
+        return redirect()->route('admin-writer.postsList')
+            ->with('success', 'Post created successfully.');
     }
 }

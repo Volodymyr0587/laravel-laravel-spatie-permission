@@ -1,26 +1,27 @@
 <x-app-layout>
 
-    <div class="container my-24 mx-auto md:px-6 bg-gray-100">
+    <div class="container mt-8 mx-auto md:px-6 bg-gray-100">
 
         <!-- Section: Design Block -->
-        <section class="mb-32 text-center">
+        <section class="mb-16 text-center">
             <h2 class="mb-12 pb-4 text-center text-3xl font-bold">Create Post
             </h2>
 
             <!-- component -->
-            <form>
+            <form action="{{ route('admin-writer.postStore') }}" method="POST">
+                @csrf
                 <div class="min-h-screen md:px-20 pt-6">
                     <div class=" bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
                         <div class="space-y-4">
                             <div>
                                 <label for="title" class="text-lx font-serif">Title:</label>
-                                <input type="text" placeholder="title" id="title"
+                                <input type="text" name="title" placeholder="title" id="title"
                                     class="w-full outline-none py-1 px-2 text-md border-1 rounded-md" />
                             </div>
                             <div>
-                                <label for="description" class="block mb-2 text-lg font-serif">Content:</label>
-                                <textarea id="description" cols="30" rows="10" placeholder="whrite here.."
-                                    class="w-full font-serif  p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"></textarea>
+                                <label for="body" class="block mb-2 text-lg font-serif">Content:</label>
+                                <textarea id="body" name="body" cols="30" rows="10" placeholder="whrite here.."
+                                    class="w-full font-serif  p-4 text-gray-600 outline-none rounded-md"></textarea>
                             </div>
 
                             <button

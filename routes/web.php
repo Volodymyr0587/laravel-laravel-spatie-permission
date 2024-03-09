@@ -51,6 +51,7 @@ Route::middleware(['auth', 'role:admin', 'verified'])->name('admin.')->prefix('a
 Route::middleware(['auth', 'role:admin|writer', 'verified'])->name('admin-writer.')->prefix('admin-writer')->group(function () {
     Route::get('/', [PostController::class, 'postsList'])->name('postsList');
     Route::get('/postCreate', [PostController::class, 'create'])->name('postCreate');
+    Route::post('/posts', [PostController::class, 'store'])->name('postStore');
 });
 
 require __DIR__.'/auth.php';
