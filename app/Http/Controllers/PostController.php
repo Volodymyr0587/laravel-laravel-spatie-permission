@@ -27,14 +27,14 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
         ]);
 
-        auth()->user()->posts()->create($request->all());
+        auth()->user()->posts()->create($validated);
 
         return redirect()->route('admin-writer.postsList')
-            ->with('success', 'Post created successfully.');
+            ->with('message', 'Post created successfully.');
     }
 }
