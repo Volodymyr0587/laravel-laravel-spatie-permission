@@ -34,7 +34,7 @@
 
                             </p>
                             <p class="mb-4 pb-2">
-                                {{ $post->body }}
+                                {{ Str::limit($post->body, 50) }}
                             </p>
                             @if (auth()->user()->id === $post->user->id || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin-writer.postEdit', $post->id) }}" data-te-ripple-init data-te-ripple-color="light"
