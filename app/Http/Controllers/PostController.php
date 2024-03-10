@@ -64,13 +64,20 @@ class PostController extends Controller
             ->with('message', 'Post updated successfully.');
     }
 
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('admin-writer.postsList')
+        ->with('message', 'Post deleted successfully.');
+    }
+
     /**
      * Save image logic
      */
     protected function saveImage(Post $post, Request $request)
     {
         if ($request->hasFile('image')) {
-            $imagePath = time() . '_' . $request->image->extension();
+            $imagePath = time() . '.' . $request->image->extension();
             $post->image = $imagePath;
             $request->image->storeAs('public/images/posts', $imagePath);
             $post->save();

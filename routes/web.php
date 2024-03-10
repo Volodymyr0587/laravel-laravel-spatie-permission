@@ -55,6 +55,7 @@ Route::middleware(['auth', 'role:admin|writer', 'verified'])->name('admin-writer
     Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('postEdit');
     Route::post('/posts/{post}', [PostController::class,'update'])->name('postUpdate');
     Route::post('/posts', [PostController::class, 'active'])->name('postActive');
+    Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('postDestroy');
 });
 
 require __DIR__.'/auth.php';
