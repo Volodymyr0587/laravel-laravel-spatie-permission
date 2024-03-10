@@ -48,7 +48,7 @@
                             <div class="mb-6 md:mb-0">
                                 <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                                     data-te-ripple-init data-te-ripple-color="light">
-                                    <img src="{{ $post->image }}" class="w-full"
+                                    <img src="{{ $post->image ? $post->image : asset('images/default-post-image.png') }}" class="w-full"
                                         alt="Louvre" />
                                     {{-- <a href="#!">
                                         <div
