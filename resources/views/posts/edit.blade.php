@@ -8,7 +8,7 @@
             </h2>
 
             <!-- component -->
-            <form action="{{ route('admin-writer.postUpdate', $post->id) }}" method="POST">
+            <form action="{{ route('admin-writer.postUpdate', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="min-h-screen md:px-20 pt-6">
                     <div class=" bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
@@ -22,6 +22,12 @@
                                 <label for="body" class="block mb-2 text-lg font-serif">Content:</label>
                                 <textarea id="body" name="body" cols="30" rows="10" placeholder="whrite here.."
                                     class="w-full font-serif  p-4 text-gray-600 outline-none rounded-md">{{ $post->body }}</textarea>
+                            </div>
+
+                            <div>
+                                <label for="image" class="text-lx font-serif">Image:</label>
+                                <input type="file" name="image" id="image"
+                                    class="w-full outline-none py-1 px-2 text-md border-1 rounded-md" />
                             </div>
 
                             @can('admin')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -54,11 +55,15 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $post->is_active = $request->boolean('is_active');
+
         $post->update($validated);
+
+        // Handle image upload
+        $this->saveImage($post, $request);
 
         return redirect()->route('admin-writer.postsList')
             ->with('message', 'Post updated successfully.');
@@ -68,7 +73,7 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('admin-writer.postsList')
-        ->with('message', 'Post deleted successfully.');
+            ->with('message', 'Post deleted successfully.');
     }
 
     /**
