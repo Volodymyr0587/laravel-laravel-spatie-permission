@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreUpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -28,16 +29,9 @@ class PostController extends Controller
         return view("posts.create");
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdatePostRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-
-        $post = auth()->user()->posts()->create($validated);
+        $post = auth()->user()->posts()->create($request->validated());
 
         $this->saveImage($post, $request);
 
@@ -50,17 +44,11 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(StoreUpdatePostRequest $request, Post $post)
     {
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
         $post->is_active = $request->boolean('is_active');
 
-        $post->update($validated);
+        $post->update($request->validated());
 
         // Handle image upload
         $this->saveImage($post, $request);
