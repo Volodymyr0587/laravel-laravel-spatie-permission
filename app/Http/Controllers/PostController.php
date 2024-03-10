@@ -39,6 +39,11 @@ class PostController extends Controller
             ->with('message', 'Post created successfully.');
     }
 
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'))->with('user');
+    }
+
     public function edit(Post $post)
     {
         return view('posts.edit', compact('post'));

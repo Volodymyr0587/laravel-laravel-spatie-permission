@@ -50,17 +50,17 @@
                                     data-te-ripple-init data-te-ripple-color="light">
 
                                     <img src="{{ $post->image ? asset('storage/images/posts/'. $post->image) : asset('images/default-post-image.png') }}" class="w-full"
-                                        alt="Louvre" />
-                                    {{-- <a href="#!">
+                                        alt="{{ $post->title }}" />
+                                    <a href="{{ route('showPost', $post->id) }}">
                                         <div
                                             class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
                                         </div>
-                                    </a> --}}
+                                    </a>
                                 </div>
                             </div>
 
                             <div>
-                                <h3 class="mb-3 text-2xl font-bold">{{ $post->title }}</h3>
+                                <h3 class="mb-3 text-2xl text-blue-900 font-bold hover:underline"><a href="{{ route('showPost', $post->id) }}">{{ $post->title }}</a></h3>
                                 <div
                                     class="mb-3 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -72,10 +72,16 @@
                                 </div>
                                 <p class="mb-6 text-neutral-500">
                                     <small>Published <u>{{ $post->updated_at->diffForHumans() }}</u> by
-                                        <a href="#!">{{ $post->user->name }}</a></small>
+                                        {{-- <a href="#!">{{ $post->user->name }}</a>< --}}
+                                        @role('admin')
+                                        <a href="{{ route('admin.users.show', $post->user->id) }}">{{ $post->user->name }}</a>
+                                        @else
+                                        {{ $post->user->name }}
+                                        @endrole
+                                    </small>
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    {{ $post->body }}
+                                    {{ Str::limit($post->body, 50) }} <a class="font-semibold text-blue-400 underline" href="{{ route('showPost', $post->id) }}">Read more...</a>
                                 </p>
                             </div>
                         </div>
