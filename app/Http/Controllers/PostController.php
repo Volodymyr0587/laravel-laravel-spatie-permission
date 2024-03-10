@@ -32,9 +32,13 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        auth()->user()->posts()->create($validated);
+
+        $post = auth()->user()->posts()->create($validated);
+
+        $this->saveImage($post, $request);
 
         return redirect()->route('admin-writer.postsList')
             ->with('message', 'Post created successfully.');
@@ -50,14 +54,26 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $post->is_active = $request->boolean('is_active');
         $post->update($validated);
 
-
-
         return redirect()->route('admin-writer.postsList')
             ->with('message', 'Post updated successfully.');
+    }
+
+    /**
+     * Save image logic
+     */
+    protected function saveImage(Post $post, Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $imagePath = time() . '_' . $request->image->extension();
+            $post->image = $imagePath;
+            $request->image->storeAs('public/images/posts', $imagePath);
+            $post->save();
+        }
     }
 }
