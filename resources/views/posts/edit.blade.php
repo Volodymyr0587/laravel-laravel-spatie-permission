@@ -30,13 +30,13 @@
                                     class="w-full outline-none py-1 px-2 text-md border-1 rounded-md" />
                             </div>
 
-                            @can('admin')
+                            @role('admin')
                             <div>
                                 <label for="is_active" class="text-lx font-serif">Published:</label>
                                 <input type="checkbox" name="is_active" id="is_active" @checked(old('is_active', $post->is_active))
                                     class="py-1 px-2" />
                             </div>
-                            @endcan
+                            @endrole
 
 
                             <button
