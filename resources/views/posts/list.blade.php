@@ -23,7 +23,7 @@
                         <div class="p-6">
                             <h5 class="mb-3 text-lg font-bold">{{ $post->title }}</h5>
                             <p class="mb-4 text-neutral-500">
-                                <small>Published <u>{{ $post->updated_at }}</u> by
+                                <small>Created <u>{{ $post->created_at }}</u> by
                                     @role('admin')
                                     <a href="{{ route('admin.users.show', $post->user->id) }}">{{ $post->user->name
                                         }}</a>
@@ -36,6 +36,7 @@
                             <p class="mb-4 pb-2">
                                 {{ Str::limit($post->body, 50) }}
                             </p>
+                            <p class="mb-4">Published: <span class="{{ $post->is_active ? 'text-green-400 font-medium' : 'text-red-400 font-medium'}}">{{ $post->is_active ? "YES" : "NO" }}</span></p>
                             @if (auth()->user()->id === $post->user->id || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin-writer.postEdit', $post->id) }}" data-te-ripple-init data-te-ripple-color="light"
                                 class="inline-block rounded-full bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-blue-500 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">Edit
