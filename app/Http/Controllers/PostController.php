@@ -57,6 +57,12 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
+        // Detach old tags
+        $post->detachTags($post->tags);
+
+        // Attach new tags
+        $this->attachTagsToModel($request, $post);
+
         // Handle image upload
         $this->saveImage($post, $request);
 

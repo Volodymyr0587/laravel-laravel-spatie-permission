@@ -25,6 +25,12 @@
                             </div>
 
                             <div>
+                                <label for="tags" class="block mb-2 text-lg font-serif">Tags (separated by whitespace):</label>
+                                <input type="text" name="tags" placeholder="tag1 tag2 tag3 ..." id="tags" value="{{ $post->tags->pluck('name')->join(" ") }}"
+                                    class="w-full outline-none py-1 px-2 text-md border-1 rounded-md" />
+                            </div>
+
+                            <div>
                                 <label for="image" class="text-lx font-serif">Image:</label>
                                 <input type="file" name="image" id="image"
                                     class="w-full outline-none py-1 px-2 text-md border-1 rounded-md" />
