@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreUpdatePostRequest;
+
 
 class PostController extends Controller
 {
@@ -102,5 +102,13 @@ class PostController extends Controller
 
         //adding multiple tags
         $post->attachTags($tags);
+    }
+
+    public function getPostsByTag(Request $request, $tag)
+    {
+        //returns models that have one or more of the given tags that are not saved with a type
+        $posts = Post::withAnyTags([$tag])->paginate(3);
+
+        return view('posts.posts-by-tag', compact('posts', 'tag'));
     }
 }

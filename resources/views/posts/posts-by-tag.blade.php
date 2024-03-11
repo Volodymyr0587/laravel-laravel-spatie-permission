@@ -40,7 +40,7 @@
                 <div class="container my-24 mx-auto md:px-6">
                     <!-- Section: Design Block -->
                     <section class="mb-32 text-center md:text-left">
-                        <h2 class="mb-12 text-center text-3xl font-bold">Latest posts</h2>
+                        <h2 class="mb-12 text-center text-3xl font-bold">Post with tag {{ $tag }}</h2>
 
                         <!-- Posts -->
                         @forelse ($posts as $post)

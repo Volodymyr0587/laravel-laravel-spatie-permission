@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('showPost');
 
+// Get posts by tag
+Route::get('/posts/tag/{tag}', [PostController::class, 'getPostsByTag'])->name('getPostsByTag');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
