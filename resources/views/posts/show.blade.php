@@ -28,7 +28,7 @@
                 @endrole
             </p>
           </ul>
-          <p>
+          <p class="text-justify">
             {{ $post->body }}
           </p>
         </div>
