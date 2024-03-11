@@ -98,8 +98,6 @@ class PostController extends Controller
         // Convert string to lower case
         $tags = strtolower($tags);
 
-
-        // dd($tags);
         if ($tags) {
             // Convert string of tags to array of tags
             $tags = explode(' ', $tags);
