@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Spatie\Tags\HasTags;
 
 #[ObservedBy([PostObserver::class])]
 class Post extends Model
 {
     use HasFactory;
+    use HasTags;
 
     protected $fillable = [
         'user_id',

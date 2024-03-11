@@ -33,6 +33,8 @@ class PostController extends Controller
     {
         $post = auth()->user()->posts()->create($request->validated());
 
+        $this->attachTagsToModel($request, $post);
+
         $this->saveImage($post, $request);
 
         return redirect()->route('admin-writer.postsList')
@@ -80,5 +82,19 @@ class PostController extends Controller
             $request->image->storeAs('public/images/posts', $imagePath);
             $post->save();
         }
+    }
+
+    protected function attachTagsToModel($request, $post)
+    {
+        // Trim white spaces from beginning and end
+        // Replace multiple white spaces with single white space
+        $tags = preg_replace('/\s+/', ' ', trim($request->tags));
+        // Convert string to lower case
+        $tags = strtolower($tags);
+        // Convert string of tags to array of tags
+        $tags = explode(' ', $tags);
+
+        //adding multiple tags
+        $post->attachTags($tags);
     }
 }
