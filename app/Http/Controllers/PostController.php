@@ -97,11 +97,16 @@ class PostController extends Controller
         $tags = preg_replace('/\s+/', ' ', trim($request->tags));
         // Convert string to lower case
         $tags = strtolower($tags);
-        // Convert string of tags to array of tags
-        $tags = explode(' ', $tags);
 
-        //adding multiple tags
-        $post->attachTags($tags);
+
+        // dd($tags);
+        if ($tags) {
+            // Convert string of tags to array of tags
+            $tags = explode(' ', $tags);
+            //adding multiple tags
+            $post->attachTags($tags);
+        }
+
     }
 
     public function getPostsByTag(Request $request, $tag)
