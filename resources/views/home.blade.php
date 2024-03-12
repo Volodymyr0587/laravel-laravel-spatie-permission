@@ -31,6 +31,7 @@
                     class="ml-4 font-semibold text-gray-600 hover:text-gray-900">Register</a>
                 @endif
                 @endauth
+                <x-application-logo class="w-20 h-20 top-0 fixed hidden md:block sm:top-0 sm:left-0 p-4 z-10"/>
             </div>
             @endif
 
