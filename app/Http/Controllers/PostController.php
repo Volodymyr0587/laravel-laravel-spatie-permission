@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("created_at", "desc")
+        $posts = Post::orderBy("updated_at", "desc")
             ->where('is_active', true)
             ->with('user')->paginate(3);
         return view("home", compact("posts"));
