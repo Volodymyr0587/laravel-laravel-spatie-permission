@@ -78,7 +78,7 @@
                                     @endforeach
 
                                 </div>
-                                <p class="mb-6 text-neutral-500">
+                                <p class="mb-2 text-neutral-500">
                                     <small>Published <u>{{ $post->updated_at->diffForHumans() }}</u> by
                                         {{-- <a href="#!">{{ $post->user->name }}</a>< --}}
                                         @role('admin')
@@ -87,6 +87,9 @@
                                         {{ $post->user->name }}
                                         @endrole
                                     </small>
+                                </p>
+                                <p class="text-neutral-500">
+                                    <small>{{ $post->estimateReadingTime() }}</small>
                                 </p>
                                 <p class="text-neutral-500 ">
                                     {{ Str::limit($post->body, 50) }} <a class="font-semibold text-blue-400 underline" href="{{ route('showPost', $post->id) }}">Read more...</a>
