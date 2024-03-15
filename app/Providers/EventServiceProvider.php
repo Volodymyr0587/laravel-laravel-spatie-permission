@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\PostDeleted;
+use App\Listeners\RemoveUnusedTags;
 use App\Models\Post;
 use App\Observers\PostObserver;
 use Illuminate\Support\Facades\Event;
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        PostDeleted::class => [
+            RemoveUnusedTags::class,
         ],
     ];
 
