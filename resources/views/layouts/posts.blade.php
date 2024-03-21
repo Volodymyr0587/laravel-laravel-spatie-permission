@@ -20,7 +20,7 @@
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @role(['admin', 'writer'])
                 <a href="{{ route('admin-writer.postsList') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900">Posts</a>
+                    class="font-semibold text-gray-600 hover:text-gray-900">{{ __('navigation.posts') }}</a>
                 @endrole
                 @auth
                 <a href="{{ url('/dashboard') }}"

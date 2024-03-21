@@ -19,10 +19,10 @@
             @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @role(['admin', 'writer'])
-                <a href="{{ route('admin-writer.postsList') }}" class="font-semibold text-gray-600 hover:text-gray-900">Posts</a>
+                <a href="{{ route('admin-writer.postsList') }}" class="font-semibold text-gray-600 hover:text-gray-900">{{ __('navigation.posts') }}</a>
                 @endrole
                 @auth
-                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 ml-4">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 ml-4">{{ __('navigation.dashboard') }}</a>
                 @else
                 <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900">Log in</a>
 
@@ -41,7 +41,7 @@
                 <div class="container my-24 mx-auto md:px-6">
                     <!-- Section: Design Block -->
                     <section class="mb-32 text-center md:text-left">
-                        <h2 class="mb-12 text-center text-3xl font-bold">Latest posts</h2>
+                        <h2 class="mb-12 text-center text-3xl font-bold">{{ __('posts.latest_posts') }}</h2>
 
                         <!-- Posts -->
                         @forelse ($posts as $post)
